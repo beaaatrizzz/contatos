@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatos</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="contato">
+        <h1>Contatos</h1>
+        <br>
+        <input type="text" id="nome" required placeholder="Nome do contato">
+        <br><br>
+        <input type="number" id="telefone" required placeholder="(00) 00000-0000">
+        <br><br>
+        <button id="salvo">Salvar</button>
+        <ul id="contatolista"></ul> <!-- Corrigido o ID da lista -->
+    </div>
+
+    <script>
+        document.getElementById('salvo').addEventListener('click', function() {
+            const contatonome = document.getElementById('nome').value;
+            const contatonumero = document.getElementById('telefone').value;
+
+            if (contatonome && contatonumero) {
+                const li = document.createElement('li');
+                li.className = 'contatoitem';
+                li.textContent = `${contatonome} - Telefone: ${contatonumero}`;
+
+                const removebotao = document.createElement('button');
+                removebotao.textContent = 'Remover';
+
+                removebotao.addEventListener('click', function() {
+                    li.remove();
+                });
+
+                li.appendChild(removebotao);
+                document.getElementById('contatolista').appendChild(li); // Corrigido o ID da lista
+
+                document.getElementById('nome').value = '';
+                document.getElementById('telefone').value = '';
+            }
+        });
+    </script>
+</body>
+</html>
